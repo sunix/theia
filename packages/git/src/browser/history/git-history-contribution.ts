@@ -21,7 +21,7 @@ import { NAVIGATOR_CONTEXT_MENU } from '@theia/navigator/lib/browser/navigator-c
 import { UriCommandHandler, UriAwareCommandHandler } from '@theia/core/lib/common/uri-command-handler';
 import URI from '@theia/core/lib/common/uri';
 import { GitHistoryWidget } from './git-history-widget';
-import { Git } from '../../common';
+import { Git, Repository } from '../../common';
 import { GitRepositoryTracker } from '../git-repository-tracker';
 import { GitRepositoryProvider } from '../git-repository-provider';
 
@@ -91,14 +91,7 @@ export class GitHistoryContribution extends AbstractViewContribution<GitHistoryW
     registerCommands(commands: CommandRegistry): void {
         commands.registerCommand(GitHistoryCommands.OPEN_FILE_HISTORY, this.newUriAwareCommandHandler({
             execute: async uri => this.showWidget(uri.toString()),
-            isEnabled: (uri: URI) => {
-                for (const repo of this.repositoryProvider.allRepositories) {
-                    if (new URI(repo.localUri).isEqualOrParent(uri)) {
-                        return true;
-                    }
-                }
-                return false;
-            }
+            isEnabled: (uri: URI) => !!this.repositoryProvider.revealRepository(uri)
         }));
         commands.registerCommand(GitHistoryCommands.OPEN_BRANCH_HISTORY, {
             execute: () => this.showWidget(undefined)
