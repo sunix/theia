@@ -40,7 +40,9 @@
     "docs": "theiaext docs"
   },
   "devDependencies": {
-    "@theia/ext-scripts": "^0.3.15"
+    "@theia/ext-scripts": "^0.3.15",
+    "chai": "^4.2.0",
+    "temp": "^0.8.3"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"

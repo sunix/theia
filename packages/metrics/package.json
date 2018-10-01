@@ -4,7 +4,9 @@
   "description": "Theia - Metrics Extension",
   "dependencies": {
     "@theia/application-manager": "^0.3.15",
+    "@theia/application-package": "^0.3.15",
     "@theia/core": "^0.3.15",
+    "express": "^4.16.3",
     "prom-client": "^10.2.0"
   },
   "publishConfig": {
@@ -40,7 +42,8 @@
     "docs": "theiaext docs"
   },
   "devDependencies": {
-    "@theia/ext-scripts": "^0.3.15"
+    "@theia/ext-scripts": "^0.3.15",
+    "chai": "^4.2.0"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"

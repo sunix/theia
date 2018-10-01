@@ -7,7 +7,8 @@
     "@theia/languages": "^0.3.15",
     "@theia/variable-resolver": "^0.3.15",
     "@types/base64-arraybuffer": "0.1.0",
-    "base64-arraybuffer": "^0.1.5"
+    "base64-arraybuffer": "^0.1.5",
+    "vscode-languageserver-types": "^3.10.0"
   },
   "publishConfig": {
     "access": "public"
@@ -42,7 +43,8 @@
     "docs": "theiaext docs"
   },
   "devDependencies": {
-    "@theia/ext-scripts": "^0.3.15"
+    "@theia/ext-scripts": "^0.3.15",
+    "chai": "^4.2.0"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"

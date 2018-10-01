@@ -7,7 +7,10 @@
     "@theia/editor": "^0.3.15",
     "@theia/languages": "^0.3.15",
     "@theia/monaco": "^0.3.15",
-    "ts-md5": "^1.2.2"
+    "monaco-languageclient": "^0.9.0",
+    "react": "^16.5.2",
+    "ts-md5": "^1.2.2",
+    "vscode-languageserver-types": "^3.10.0"
   },
   "publishConfig": {
     "access": "public"

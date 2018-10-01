@@ -43,6 +43,7 @@
     ],
     "no-consecutive-blank-lines": true,
     "no-construct": true,
+    "no-implicit-dependencies": [true, "dev", ["inversify"]],
     "no-magic-numbers": false,
     "no-null-keyword": true,
     "no-shadowed-variable": true,

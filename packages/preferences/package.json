@@ -3,6 +3,10 @@
   "version": "0.3.15",
   "description": "Theia - Preferences Extension",
   "dependencies": {
+    "@phosphor/algorithm": "^1.1.2",
+    "@phosphor/commands": "^1.6.1",
+    "@phosphor/messaging": "^1.2.2",
+    "@phosphor/widgets": "~1.5.0",
     "@theia/core": "^0.3.15",
     "@theia/editor": "^0.3.15",
     "@theia/filesystem": "^0.3.15",
@@ -46,7 +50,10 @@
     "docs": "theiaext docs"
   },
   "devDependencies": {
-    "@theia/ext-scripts": "^0.3.15"
+    "@theia/ext-scripts": "^0.3.15",
+    "chai": "^4.2.0",
+    "sinon": "^6.3.4",
+    "temp": "^0.8.3"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"

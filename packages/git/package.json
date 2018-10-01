@@ -3,6 +3,9 @@
   "version": "0.3.15",
   "description": "Theia - Git Integration",
   "dependencies": {
+    "@phosphor/domutils": "^1.1.2",
+    "@phosphor/messaging": "^1.2.2",
+    "@phosphor/widgets": "~1.5.0",
     "@theia/core": "^0.3.15",
     "@theia/editor": "^0.3.15",
     "@theia/filesystem": "^0.3.15",
@@ -15,8 +18,12 @@
     "dugite-extra": "0.1.7",
     "find-git-repositories": "^0.1.0",
     "fs-extra": "^4.0.2",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "moment": "^2.21.0",
     "octicons": "^7.1.0",
+    "react": "^16.5.2",
+    "react-virtualized": "^9.20.1",
     "ts-md5": "^1.2.2"
   },
   "publishConfig": {
@@ -55,7 +62,10 @@
   },
   "devDependencies": {
     "@theia/ext-scripts": "^0.3.15",
-    "upath": "^1.0.2"
+    "upath": "^1.0.2",
+    "chai": "^4.2.0",
+    "chai-string": "^1.5.0",
+    "temp": "^0.8.3"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"

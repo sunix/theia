@@ -5,6 +5,7 @@
   "dependencies": {
     "@theia/core": "^0.3.15",
     "@theia/editor": "^0.3.15",
+    "@theia/languages": "^0.3.15",
     "@theia/monaco": "^0.3.15",
     "editorconfig": "^0.15.0"
   },
@@ -42,7 +43,9 @@
     "docs": "theiaext docs"
   },
   "devDependencies": {
-    "@theia/ext-scripts": "^0.3.15"
+    "@theia/ext-scripts": "^0.3.15",
+    "chai": "^4.2.0",
+    "sinon": "^6.3.4"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"

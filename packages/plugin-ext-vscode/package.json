@@ -3,7 +3,9 @@
   "version": "0.3.15",
   "description": "Theia - Plugin Extension for VsCode",
   "dependencies": {
-    "@theia/plugin-ext": "^0.3.15"
+    "@theia/plugin": "^0.3.15",
+    "@theia/plugin-ext": "^0.3.15",
+    "request": "^2.88.0"
   },
   "publishConfig": {
     "access": "public"

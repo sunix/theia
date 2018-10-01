@@ -10,7 +10,11 @@
     "@typefox/monaco-editor-core": "^0.14.6",
     "@types/uuid": "^3.4.3",
     "monaco-languageclient": "^0.9.0",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "vscode-jsonrpc": "^3.6.2",
+    "vscode-languageserver-protocol": "^3.10.0",
+    "vscode-languageserver-types": "^3.10.0",
+    "vscode-ws-jsonrpc": "^0.0.2-2"
   },
   "publishConfig": {
     "access": "public"

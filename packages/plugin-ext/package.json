@@ -5,16 +5,26 @@
   "main": "lib/common/index.js",
   "typings": "lib/common/index.d.ts",
   "dependencies": {
+    "@phosphor/commands": "^1.6.1",
+    "@phosphor/messaging": "^1.2.2",
+    "@phosphor/widgets": "~1.5.0",
     "@theia/core": "^0.3.15",
     "@theia/editor": "^0.3.15",
     "@theia/filesystem": "^0.3.15",
     "@theia/monaco": "^0.3.15",
     "@theia/navigator": "^0.3.15",
+    "@theia/output": "^0.3.15",
     "@theia/plugin": "^0.3.15",
+    "@theia/terminal": "^0.3.15",
     "@theia/workspace": "^0.3.15",
     "decompress": "^4.2.0",
+    "express": "^4.16.3",
     "lodash.clonedeep": "^4.5.0",
+    "monaco-languageclient": "^0.9.0",
     "ps-tree": "1.1.0",
+    "react": "^16.5.2",
+    "request": "^2.88.0",
+    "vscode-textmate": "^4.0.1",
     "vscode-uri": "^1.0.1"
   },
   "publishConfig": {
@@ -54,7 +64,8 @@
   "devDependencies": {
     "@theia/ext-scripts": "^0.3.15",
     "@types/decompress": "^4.2.2",
-    "@types/lodash.clonedeep": "^4.5.3"
+    "@types/lodash.clonedeep": "^4.5.3",
+    "sinon": "^6.3.4"
   },
   "nyc": {
     "extends": "../../configs/nyc.json"
