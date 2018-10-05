@@ -23,6 +23,7 @@ import { ContributionProvider } from '@theia/core/lib/common/contribution-provid
 import { LogType } from './../../common/types';
 import { HostedPluginUriPostProcessor, HostedPluginUriPostProcessorSymbolName } from './hosted-plugin-uri-postprocessor';
 import { HostedPluginSupport } from './hosted-plugin';
+import { DebugConfiguration } from '../../common';
 const processTree = require('ps-tree');
 
 export const HostedInstanceManager = Symbol('HostedInstanceManager');
@@ -44,6 +45,14 @@ export interface HostedInstanceManager {
      * @returns uri where new Theia instance is run
      */
     run(pluginUri: URI, port?: number): Promise<URI>;
+
+    /**
+     *  Runs specified by the given uri plugin  with debug in separate Theia instance.
+     * @param pluginUri uri to the plugin source location
+     * @param config debug configuration
+     * @returns uri where new Theia instance is run
+     */
+    debug(pluginUri: URI, config: DebugConfiguration): Promise<URI>;
 
     /**
      * Terminates hosted plugin instance.
@@ -95,6 +104,14 @@ export abstract class AbstractHostedInstanceManager implements HostedInstanceMan
     }
 
     async run(pluginUri: URI, port?: number): Promise<URI> {
+        return this.doRun(pluginUri, port);
+    }
+
+    async debug(pluginUri: URI, config: DebugConfiguration): Promise<URI> {
+        return this.doRun(pluginUri, undefined, config);
+    }
+
+    private async doRun(pluginUri: URI, port?: number, config?: DebugConfiguration): Promise<URI> {
         if (this.isPluginRunnig) {
             this.hostedPluginSupport.sendLog({ data: 'Hosted plugin instance is already running.', type: LogType.Info });
             throw new Error('Hosted instance is already running.');
@@ -108,7 +125,7 @@ export abstract class AbstractHostedInstanceManager implements HostedInstanceMan
 
             // Disable all the other plugins on this instance
             processOptions.env.THEIA_PLUGINS = '';
-            command = await this.getStartCommand(port);
+            command = await this.getStartCommand(port, config);
         } else {
             throw new Error('Not supported plugin location: ' + pluginUri.toString());
         }
@@ -158,7 +175,7 @@ export abstract class AbstractHostedInstanceManager implements HostedInstanceMan
         return false;
     }
 
-    protected async getStartCommand(port?: number): Promise<string[]> {
+    protected async getStartCommand(port?: number, config?: DebugConfiguration): Promise<string[]> {
         const command = ['yarn', 'theia', 'start'];
         if (process.env.HOSTED_PLUGIN_HOSTNAME) {
             command.push('--hostname=' + process.env.HOSTED_PLUGIN_HOSTNAME);
@@ -166,6 +183,20 @@ export abstract class AbstractHostedInstanceManager implements HostedInstanceMan
         if (port) {
             await this.validatePort(port);
             command.push('--port=' + port);
+        }
+
+        if (config) {
+            let debugString = '--hosted-plugin-';
+            if (config.debugMode) {
+                debugString += config.debugMode;
+            } else {
+                debugString += 'inspect';
+            }
+
+            if (config.port) {
+                debugString += ':127.0.0.1:' + config.port;
+            }
+            command.push(debugString);
         }
         return command;
     }
@@ -248,7 +279,7 @@ export class NodeHostedPluginRunner extends AbstractHostedInstanceManager {
         return uri;
     }
 
-    protected async getStartCommand(port?: number): Promise<string[]> {
+    protected async getStartCommand(port?: number, config?: DebugConfiguration): Promise<string[]> {
         if (!port) {
             if (process.env.HOSTED_PLUGIN_PORT) {
                 port = Number(process.env.HOSTED_PLUGIN_PORT);
@@ -256,7 +287,7 @@ export class NodeHostedPluginRunner extends AbstractHostedInstanceManager {
                 port = 3030;
             }
         }
-        return super.getStartCommand(port);
+        return super.getStartCommand(port, config);
     }
 
 }
