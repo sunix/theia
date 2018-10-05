@@ -193,8 +193,10 @@ export abstract class AbstractHostedInstanceManager implements HostedInstanceMan
                 debugString += 'inspect';
             }
 
+            debugString += '=0.0.0.0';
+
             if (config.port) {
-                debugString += ':127.0.0.1:' + config.port;
+                debugString += ':' + config.port;
             }
             command.push(debugString);
         }
