@@ -42,13 +42,7 @@ export class WorkspaceFrontendContribution implements CommandContribution, Keybi
     registerCommands(commands: CommandRegistry): void {
         commands.registerCommand(WorkspaceCommands.OPEN, {
             isEnabled: () => true,
-            execute: (args: any[]) => {
-                if (args) {
-                    const [fileURI] = args;
-                    return this.workspaceService.open(fileURI);
-                }
-                return this.doOpen();
-            }
+            execute: () => this.doOpen()
         });
         commands.registerCommand(WorkspaceCommands.OPEN_WORKSPACE, {
             isEnabled: () => true,
